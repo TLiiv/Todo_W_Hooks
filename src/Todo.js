@@ -14,10 +14,11 @@ import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 function Todo (props) {
     const [isEditing, toggle] = useToggle(false); //actually no need to fill paranthesis, it is defaulted to false
     return (
-        <ListItem style={{height:'64px'}}>
+        <ListItem style={{height:'64px'}} >
             {isEditing ? <EditTodo 
             editTodo={props.editTodo} 
             id={props.id} 
+            key={props.id} 
             task={props.task}
             toggleEditForm={toggle}
             />:

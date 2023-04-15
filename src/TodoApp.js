@@ -11,14 +11,20 @@ import Toolbar from '@mui/material/Toolbar';
 import Grid from '@mui/material/Grid';
 
 function TodoApp () {
-    const initialTodos = [
-        {id:1, task: 'Walk the fish', completed:false },
-        {id:2, task: 'Clean Fishtank', completed:true },
-        {id:3, task: 'Breathe Air', completed:false }
-    ]
+    const initialTodos = JSON.parse(window.localStorage.getItem('todos') || "[]");
+    // const initialTodos = [
+    //     {id:1, task: 'Walk the fish', completed:false },
+    //     {id:2, task: 'Clean Fishtank', completed:true },
+    //     {id:3, task: 'Breathe Air', completed:false }
+    // ]
     const [todos, setTodos] = useState(initialTodos);
+
+    useEffect(()=>{
+        window.localStorage.setItem('todos',JSON.stringify(todos))
+    },[todos]);
+    
     const addTodo = newTodoText => {
-        setTodos([...todos,{id:uuidv4(), task: newTodoText, completed: false }])
+        setTodos([...todos,{id:uuidv4(), task: newTodoText, completed: false}])
     };
 
     const removeTodo = todoId => {

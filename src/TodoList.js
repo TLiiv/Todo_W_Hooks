@@ -9,16 +9,16 @@ import List from '@mui/material/List';
 
 
 function TodoList(props){
-    
+    if(props.todos.length)//<--if list empty wont render paper
     return (
         <Paper>
             {props.todos.map((todo,i)=>(
                 <List>
                     <>
                     <Todo 
-                    key={todo.id}
                     task={todo.task} 
                     id={todo.id} 
+                    key={todo.id}
                     completed={todo.completed}
                     removeTodo={props.removeTodo}
                     toggleTodo={props.toggleTodo}
@@ -30,7 +30,8 @@ function TodoList(props){
                 </List>
 ))}
         </Paper>
-    )
+    );
+    return null;//<--if list empty it needs to return something so we return null.
 }
 
 
