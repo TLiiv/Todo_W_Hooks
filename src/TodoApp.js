@@ -4,6 +4,7 @@ import TodoForm from './TodoForm';
 import useTodoState from './hooks/useTodoState';
 
 
+
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import AppBar from '@mui/material/AppBar';
@@ -11,7 +12,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Grid from '@mui/material/Grid';
 
 function TodoApp () {
-    const initialTodos = JSON.parse(window.localStorage.getItem('todos') || "[]");
+    const initialTodos = [{id:1, task:"Pet a Monkey", completed: false}];
+
+    
     const {todos,addTodo,removeTodo,toggleTodo,editTodo} = useTodoState(initialTodos);
     
     // const initialTodos = [
@@ -21,9 +24,12 @@ function TodoApp () {
     // ]
     
 
-    useEffect(()=>{
-        window.localStorage.setItem('todos',JSON.stringify(todos))
-    },[todos]);
+    // const [todos] = useLocalStorageState("todos",[])
+    //const initialTodos = JSON.parse(window.localStorage.getItem('todos') || "[]");
+   
+    // useEffect(()=>{
+    //     window.localStorage.setItem('todos',JSON.stringify(todos))
+    // },[todos]); //old way to save to local storage
     
    
     return (
